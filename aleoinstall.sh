@@ -65,7 +65,7 @@ RestartSec=10
 LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
-
+" > $HOME/aleod.service
 echo -e 'Creating a service for Aleo Miner...\n' && sleep 1
 echo "[Unit]
 Description=Aleo Miner
@@ -78,6 +78,7 @@ RestartSec=10
 LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
+" > $HOME/aleod-miner.service
 sudo mv $HOME/aleod.service /etc/systemd/system
 sudo mv $HOME/aleod-miner.service /etc/systemd/system
 sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
