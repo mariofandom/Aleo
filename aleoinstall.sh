@@ -20,9 +20,24 @@ if exists curl; then
 else
   sudo apt install curl -y < "/dev/null"
 fi
-#sleep 1 && curl -s https://api.nodes.guru/logo.sh | bash && sleep 3
+
 echo -e 'Setting up swapfile...\n'
-curl -s https://api.nodes.guru/swap4.sh | bash
+echo -e '\n\e[42m[Swap] Starting...\e[0m\n'
+grep -q "swapfile" /etc/fstab
+if [[ ! $? -ne 0 ]]; then
+    echo -e '\n\e[42m[Swap] Swap file exist, skip.\e[0m\n'
+else
+    cd $HOME
+    sudo fallocate -l 4G $HOME/swapfile
+    sudo dd if=/dev/zero of=swapfile bs=1K count=4M
+    sudo chmod 600 $HOME/swapfile
+    sudo mkswap $HOME/swapfile
+    sudo swapon $HOME/swapfile
+    sudo swapon --show
+    echo $HOME'/swapfile swap swap defaults 0 0' >> /etc/fstab
+    echo -e '\n\e[42m[Swap] Done\e[0m\n'
+fi
+
 echo -e 'Installing dependencies...\n' && sleep 1
 sudo apt update
 sudo apt install make clang pkg-config libssl-dev build-essential git curl ntp jq llvm -y < "/dev/null"
