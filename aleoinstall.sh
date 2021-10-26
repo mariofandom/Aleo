@@ -53,8 +53,8 @@ cd $HOME
 git clone https://github.com/AleoHQ/snarkOS
 cd snarkOS
 
-git checkout v1.3.16
-echo -e 'Compiling snarkos v1.3.16 ...\n' && sleep 1
+git checkout v1.3.17
+echo -e 'Compiling snarkos v1.3.17 ...\n' && sleep 1
 cargo build --release
 sudo cp $HOME/snarkOS/target/release/snarkos /usr/bin
 echo -e 'Clone Aleo...\n' && sleep 1
