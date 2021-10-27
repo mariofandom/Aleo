@@ -88,7 +88,7 @@ Description=Aleo Miner
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=/usr/bin/snarkos --is-miner --miner-address '$ALEO_ADDRESS' --connect 46.101.144.133:4131,167.71.79.152:4131,46.101.147.96:4131,167.99.53.204:4131,128.199.15.82:4131,159.89.152.247:4131,128.199.7.1:4131,167.99.69.230:4131,178.128.18.3:4131,206.189.80.245:4131
+ExecStart=/usr/bin/snarkos --is -miner  --min-peers 100  --miner-address '$ALEO_ADDRESS' --connect 46.101.144.133:4131,167.71.79.152:4131,46.101.147.96:4131,167.99.53.204:4131,128.199.15.82:4131,159.89.152.247:4131,128.199.7.1:4131,167.99.69.230:4131,178.128.18.3:4131,206.189.80.245:4131
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
