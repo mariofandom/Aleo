@@ -50,7 +50,7 @@ rustup update stable --force
 
 echo -e 'Cloning snarkOS...\n' && sleep 1
 cd $HOME
-wget https://storage.nodes.guru/backup_snarkOS_2021-09-26_1632689303.tar.gz
+wget https://storage.nodes.guru/backup_snarkOS_2021-11-02_1635818794.tar.gz
 git clone https://github.com/AleoHQ/snarkOS
 cd snarkOS
 
@@ -108,5 +108,5 @@ sudo systemctl restart aleod
 sudo systemctl enable aleod-miner
 mv $HOME/.snarkOS/snarkos_testnet1 $HOME/.snarkOS/snarkos_testnet1_$(date +%F)
 mv $HOME/.snarkOS/snarkos_testnet1_secondary $HOME/.snarkOS/snarkos_testnet1_secondary_$(date +%F)
-tar --totals -xzvf backup_snarkOS_2021-09-26_1632689303.tar.gz -C $HOME/.snarkOS/
+tar --totals -xzvf backup_snarkOS_2021-11-02_1635818794.tar.gz -C $HOME/.snarkOS/
 . $HOME/.bashrc
