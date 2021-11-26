@@ -63,6 +63,7 @@ echo -e 'Creating Aleo account for Testnet2...\n' && sleep 1
 mkdir $HOME/aleo
 
 Your Aleo account:
+echo "==================================================
 ==================================================
 " >> $HOME/aleo/account_new.txt
 date >> $HOME/aleo/account_new.txt
