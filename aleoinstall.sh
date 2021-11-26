@@ -50,28 +50,36 @@ rustup update stable --force
 
 echo -e 'Cloning snarkOS...\n' && sleep 1
 cd $HOME
-wget https://storage.nodes.guru/backup_snarkOS_2021-11-02_1635818794.tar.gz
-git clone https://github.com/AleoHQ/snarkOS
+
+git clone https://github.com/AleoHQ/snarkOS.git --depth 1 -b testnet2
 cd snarkOS
 
-git checkout v1.3.17
-echo -e 'Compiling snarkos v1.3.17 ...\n' && sleep 1
-cargo build --release
+echo -e 'Installing snarkos v2.0.0 ...\n' && sleep 1
+cargo install --path .
+sudo rm -rf /usr/bin/snarkos
 sudo cp $HOME/snarkOS/target/release/snarkos /usr/bin
-echo -e 'Clone Aleo...\n' && sleep 1
+
 cd $HOME
-git clone https://github.com/AleoHQ/aleo && cd aleo
-cargo install --path . --locked
-echo -e 'Creating account...\n' && sleep 1
-aleo account new >> $HOME/aleo/account_new.txt && cat $HOME/aleo/account_new.txt && sleep 3
+echo "=================================================="
+echo -e 'Creating Aleo account for Testnet2...\n' && sleep 1
+mkdir $HOME/aleo
+echo "==================================================
+Your Aleo account:
+==================================================
+
+" >> $HOME/aleo/account_new.txt
+date >> $HOME/aleo/account_new.txt
+
+apt install screen
+screen -dmS snarkos_keygen bash -c "snarkos experimental new_account &>> $HOME/aleo/account_new.txt"
+cat $HOME/aleo/account_new.txt
 echo 'export ALEO_ADDRESS='$(cat $HOME/aleo/account_new.txt | awk '/Address/ {print $2}') >> $HOME/.bashrc && . $HOME/.bashrc
 source $HOME/.bashrc
-export ALEO_ADDRESS=$(cat $HOME/aleo/account_new.txt | awk '/Address/ {print $2}')
-echo -e 'Your miner address - ' && echo ${ALEO_ADDRESS} && sleep 1
+export ALEO_ADDRESS=$(cat $HOME/aleo/account_new.txt | awk '/Address/ {print $2}' | tail -1)
+printf 'Your miner address - ' && echo ${ALEO_ADDRESS} && sleep 1
 echo -e 'Creating a service for Aleo Node...\n' && sleep 1
 echo "[Unit]
-
-Description=Aleo Node
+Description=Aleo Client Node Testnet2
 After=network-online.target
 [Service]
 User=$USER
@@ -84,11 +92,11 @@ WantedBy=multi-user.target
 " > $HOME/aleod.service
 echo -e 'Creating a service for Aleo Miner...\n' && sleep 1
 echo "[Unit]
-Description=Aleo Miner
+Description=Aleo Miner Testnet2
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=/usr/bin/snarkos --is-miner --miner-address '$ALEO_ADDRESS' --connect 159.89.152.247:4131,167.71.79.152:4131,46.101.144.133:4131,64.227.30.34:4131,128.199.7.1:4131,178.128.18.3:4131,128.199.15.82:4131,167.99.69.230:4131,46.101.147.96:4131,3.21.223.140:4131,206.189.80.245:4131 
+ExecStart=/usr/bin/snarkos --trial --miner $ALEO_ADDRESS
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
@@ -102,11 +110,9 @@ Storage=persistent
 EOF
 sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
-echo -e 'Starting Aleo Node service\n' && sleep 1
+echo -e 'Enabling Aleo Node and Miner services\n' && sleep 1
 sudo systemctl enable aleod
-sudo systemctl restart aleod
 sudo systemctl enable aleod-miner
-mv $HOME/.snarkOS/snarkos_testnet1 $HOME/.snarkOS/snarkos_testnet1_$(date +%F)
-mv $HOME/.snarkOS/snarkos_testnet1_secondary $HOME/.snarkOS/snarkos_testnet1_secondary_$(date +%F)
-tar --totals -xzvf backup_snarkOS_2021-11-02_1635818794.tar.gz -C $HOME/.snarkOS/
+echo -e 'To check your node/miner status - run this script in 15-20 minutes:\n' && sleep 1
+echo -e 'wget -O snarkos_monitor.sh https://api.nodes.guru/snarkos_monitor.sh && chmod +x snarkos_monitor.sh && ./snarkos_monitor.sh' && echo && sleep 1
 . $HOME/.bashrc
