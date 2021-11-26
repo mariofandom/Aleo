@@ -50,7 +50,7 @@ rustup update stable --force
 
 echo -e 'Cloning snarkOS...\n' && sleep 1
 cd $HOME
-https://github.com/AleoHQ/snarkOS.git --depth 1 -b testnet2
+git clone https://github.com/AleoHQ/snarkOS.git --depth 1 -b testnet2
 cd snarkOS
 
 echo -e 'Installing snarkos v2.0.0 ...\n' && sleep 1
