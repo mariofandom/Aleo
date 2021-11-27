@@ -47,7 +47,7 @@ sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
 source $HOME/.cargo/env
 rustup default stable
 rustup update stable --force
-rmdir -r $HOME/snarkOS
+sudo rm -r $HOME/snarkOS
 
 echo -e 'Cloning snarkOS...\n' && sleep 1
 cd $HOME
