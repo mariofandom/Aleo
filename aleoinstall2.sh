@@ -38,15 +38,21 @@ else
     echo -e '\n\e[42m[Swap] Done\e[0m\n'
 fi
 
+
+
 echo -e 'Installing dependencies...\n' && sleep 1
 sudo apt update
 sudo apt install make clang pkg-config libssl-dev build-essential gcc xz-utils tmux git curl ntp jq llvm -y < "/dev/null"
 echo -e 'Installing Rust (stable toolchain)...\n' && sleep 1
 sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
 
+sudo systemctl stop aleod
+sudo systemctl stop aleod-miner
+
 source $HOME/.cargo/env
 rustup default stable
 rustup update stable --force
+sudo rm $HOME/aleo/account_new.txt
 sudo rm -r $HOME/snarkOS
 
 echo -e 'Cloning snarkOS...\n' && sleep 1
