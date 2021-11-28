@@ -107,8 +107,7 @@ Restart=always
 RestartSec=10
 LimitNOFILE=10000
 [Install]
-WantedBy=multi-user.target
-" > $HOME/aleod-miner.service
+WantedBy=multi-user.target" > $HOME/aleod-miner.service
 sudo mv $HOME/aleod.service /etc/systemd/system
 sudo mv $HOME/aleod-miner.service /etc/systemd/system
 sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
