@@ -124,10 +124,11 @@ sudo systemctl enable aleod
 sudo systemctl enable aleod-miner
 sudo systemctl start aleod-miner
 #show message about ip
-alias getip="wget -qO - eth0.me"
-printf "your ip is  "&& getip
+export getip=$(wget -qO - eth0.me)
+printf "your ip is  "&& echo ${getip}
 echo "open link below to see your miner in checker"
-printf "https://nodes.guru/aleo/aleochecker?q="&&  getip 
-printf " use command below to see miner status"
-printf "systemctl status aleod-miner" 
+printf "https://nodes.guru/aleo/aleochecker?q="&&  echo ${getip}
+printf " use command below to see miner status      \n " 
+printf "systemctl status aleod-miner \n" 
+
 
