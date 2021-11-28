@@ -9,6 +9,7 @@ sudo ufw deny out from any to 192.168.0.0/16
 sudo ufw deny out from any to 169.254.0.0/16
 sudo ufw deny out from any to 198.18.0.0/15
 sudo ufw deny out from any to 100.64.0.0/10
+ufw allow 4132/tcp && ufw allow 3032/tcp
 sudo ufw --force enable
 
 exists()
@@ -69,8 +70,9 @@ cd $HOME
 echo -e 'Creating Aleo account for Testnet2...\n' && sleep 1
 mkdir $HOME/aleo
 
-Your Aleo account:
+
 echo "==================================================
+Your Aleo account:
 ==================================================
 " >> $HOME/aleo/account_new.txt
 date >> $HOME/aleo/account_new.txt
@@ -120,7 +122,12 @@ sudo systemctl daemon-reload
 echo -e 'Enabling Aleo Node and Miner services\n' && sleep 1
 sudo systemctl enable aleod
 sudo systemctl enable aleod-miner
-
 sudo systemctl start aleod-miner
-
+#show message about ip
+alias getip="wget -qO - eth0.me"
+printf "your ip is  "&& getip
+echo "open link below to see your miner in checker"
+printf "https://nodes.guru/aleo/aleochecker?q="&&  getip 
+printf " use command below to see miner status"
+printf "systemctl status aleod-miner" 
 
