@@ -75,15 +75,17 @@ echo "==================================================
 " >> $HOME/aleo/account_new.txt
 date >> $HOME/aleo/account_new.txt
 
-apt install screen
-screen -dmS snarkos_keygen bash -c "snarkos experimental new_account &>> $HOME/aleo/account_new.txt"
-cat $HOME/aleo/account_new.txt
+snarkos experimental new_account >> $HOME/aleo/account_new.txt && cat $HOME/aleo/account_new.txt && sleep 2
 
+
+
+cat $HOME/aleo/account_new.txt
 echo 'export ALEO_ADDRESS='$(cat $HOME/aleo/account_new.txt | awk '/Address/ {print $2}') >> $HOME/.bashrc && . $HOME/.bashrc
 source $HOME/.bashrc
 export ALEO_ADDRESS=$(cat $HOME/aleo/account_new.txt | awk '/Address/ {print $2}' | tail -1)
 printf 'Your miner address - ' && echo ${ALEO_ADDRESS} && sleep 1
 echo -e 'Creating a service for Aleo Node...\n' && sleep 1
+
 echo "[Unit]
 Description=Aleo Client Node Testnet2
 After=network-online.target
@@ -118,8 +120,7 @@ sudo systemctl daemon-reload
 echo -e 'Enabling Aleo Node and Miner services\n' && sleep 1
 sudo systemctl enable aleod
 sudo systemctl enable aleod-miner
-#sudo systemctl restart aleod
-#sudo systemctl restart aleod-miner
-#echo -e 'To check your node/miner status - run this script in 15-20 minutes:\n' && sleep 1
-#echo -e 'wget -O snarkos_monitor.sh https://api.nodes.guru/snarkos_monitor.sh && chmod +x snarkos_monitor.sh && ./snarkos_monitor.sh' && echo && sleep 1
+
+sudo systemctl start aleod-miner
+
 
