@@ -129,6 +129,6 @@ printf "your ip is  "&& echo ${getip}
 echo "open link below to see your miner in checker"
 printf "https://nodes.guru/aleo/aleochecker?q="&&  echo ${getip}
 printf " use command below to see miner status      \n " 
-printf "systemctl status aleod-miner \n" && sleep 100
+printf "systemctl status aleod-miner \n" && sleep 300
 
 
