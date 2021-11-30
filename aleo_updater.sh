@@ -1,7 +1,4 @@
-
 #!/bin/bash
-  
-
 
 сd $HOME/snarkOS
 while :
