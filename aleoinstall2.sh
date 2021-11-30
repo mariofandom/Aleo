@@ -126,7 +126,7 @@ sudo systemctl start aleod-miner
 echo -e "Installing Aleo Updater\n"
 cd $HOME
 
-curl -s $HOME/aleo_updater.sh https://raw.githubusercontent.com/mariofandom/Aleo/main/aleo_updater.sh > aleo_updater.sh && chmod +x $HOME/aleo_updater.sh && ./aleo_updater.sh
+curl -s $HOME/aleo_updater.sh https://raw.githubusercontent.com/mariofandom/Aleo/main/aleo_updater.sh > aleo_updater.sh && chmod +x $HOME/aleo_updater.sh && $HOME/aleo_updater.sh
 echo "[Unit]
 Description=Aleo Updater Testnet2
 After=network-online.target
