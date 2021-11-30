@@ -1,4 +1,9 @@
-d $HOME/snarkOS
+
+#!/bin/bash
+  
+
+
+сd $HOME/snarkOS
 while :
 do
   echo "Checking for updates..."
