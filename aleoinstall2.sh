@@ -123,6 +123,36 @@ echo -e 'Enabling Aleo Node and Miner services\n' && sleep 1
 sudo systemctl enable aleod
 sudo systemctl enable aleod-miner
 sudo systemctl start aleod-miner
+echo -e "Installing Aleo Updater\n"
+cd $HOME
+curl -s $HOME/aleo_updater.sh https://raw.githubusercontent.com/mariofandom/Aleo/main/aleo_updater.sh && chmod +x $HOME/aleo_updater.sh
+echo "[Unit]
+Description=Aleo Updater Testnet2
+After=network-online.target
+[Service]
+User=$USER
+WorkingDirectory=$HOME/snarkOS
+ExecStart=/bin/bash $HOME/aleo_updater.sh
+Restart=always
+RestartSec=10
+LimitNOFILE=10000
+[Install]
+WantedBy=multi-user.target
+" > $HOME/aleo-updater.service
+sudo mv $HOME/aleo-updater.service /etc/systemd/system
+systemctl daemon-reload
+echo -e 'Enabling Aleo Updater services\n' && sleep 1
+systemctl enable aleo-updater
+systemctl restart aleo-updater
+
+
+
+
+
+
+
+
+
 #show message about ip
 export getip=$(wget -qO - eth0.me)
 printf "your ip is  "&& echo ${getip}
