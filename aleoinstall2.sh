@@ -125,14 +125,14 @@ sudo systemctl enable aleod-miner
 sudo systemctl start aleod-miner
 echo -e "Installing Aleo Updater\n"
 cd $HOME
-wget -q -O $HOME/aleo_updater_testnet.sh https://github.com/mariofandom/Aleo/blob/main/aleo_updater_testnet.sh && chmod +x  $HOME/aleo_updater_testnet.sh
+wget -q -O $HOME/aleo_updater.sh https://github.com/mariofandom/Aleo/blob/main/aleo_updater.sh && chmod +x  $HOME/aleo_updater.sh
 echo "[Unit]
 Description=Aleo Updater Testnet2
 After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/snarkOS
-ExecStart=/bin/bash $HOME/aleo_updater_testnet.sh
+ExecStart=/bin/bash $HOME/aleo_updater.sh
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
