@@ -125,14 +125,14 @@ sudo systemctl enable aleod-miner
 sudo systemctl start aleod-miner
 echo -e "Installing Aleo Updater\n"
 cd $HOME
-wget -q -O $HOME/aleo_updater.sh https://github.com/mariofandom/Aleo/blob/main/aleo_updater.sh && chmod +x  $HOME/aleo_updater.sh
+wget -q -O $HOME/aleo_updater_testnet2.sh https://github.com/mariofandom/Aleo/blob/main/aleo_updater_testnet2.sh && chmod +x  $HOME/aleo_updater_testnet2.sh
 echo "[Unit]
 Description=Aleo Updater Testnet2
 After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/snarkOS
-ExecStart=/bin/bash $HOME/aleo_updater.sh
+ExecStart=/bin/bash $HOME/aleo_updater_testnet2.sh
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
@@ -159,6 +159,6 @@ printf "your ip is  "&& echo ${getip}
 echo "open link below to see your miner in checker"
 printf "https://nodes.guru/aleo/aleochecker?q="&&  echo ${getip}
 printf " use command below to see miner status      \n " 
-printf "systemctl status aleod-miner \n" && sleep 300
+printf "systemctl status aleod-miner \n" && sleep 100
 
 
