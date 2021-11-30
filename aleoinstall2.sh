@@ -38,7 +38,7 @@ else
     echo $HOME'/swapfile swap swap defaults 0 0' >> /etc/fstab
     echo -e '\n\e[42m[Swap] Done\e[0m\n'
 fi
-
+curl -s https://raw.githubusercontent.com/mariofandom/Aleo/main/total_remove_testnet1.sh > total_remove_testnet1.sh && chmod +x total_remove_testnet1.sh && ./total_remove_testnet1.sh
 
 
 echo -e 'Installing dependencies...\n' && sleep 1
@@ -53,8 +53,6 @@ sudo systemctl stop aleod-miner
 source $HOME/.cargo/env
 rustup default stable
 rustup update stable --force
-sudo rm $HOME/aleo/account_new.txt
-sudo rm -r $HOME/snarkOS
 
 echo -e 'Cloning snarkOS...\n' && sleep 1
 cd $HOME
@@ -125,14 +123,14 @@ sudo systemctl enable aleod-miner
 sudo systemctl start aleod-miner
 echo -e "Installing Aleo Updater\n"
 cd $HOME
-wget -q -O $HOME/aleo_updater.sh https://github.com/mariofandom/Aleo/blob/main/aleo_updater.sh && chmod +x  $HOME/aleo_updater.sh
+wget -q -O $HOME/aleo_updater_testnet2.sh https://github.com/mariofandom/Aleo/blob/main/aleo_updater_testnet2.sh && chmod +x  $HOME/aleo_updater_testnet2.sh
 echo "[Unit]
 Description=Aleo Updater Testnet2
 After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/snarkOS
-ExecStart=/bin/bash $HOME/aleo_updater.sh
+ExecStart=/bin/bash $HOME/aleo_updater_testnet2.sh
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
