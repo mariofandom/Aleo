@@ -154,7 +154,7 @@ systemctl daemon-reload
 echo -e 'Enabling Aleo Updater services\n' && sleep 1
 systemctl enable aleo-updater
 systemctl restart aleo-updater
-
+sudo systemctl restart systemd-journald
 
 
 
