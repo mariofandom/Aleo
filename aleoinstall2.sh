@@ -38,6 +38,14 @@ else
     echo $HOME'/swapfile swap swap defaults 0 0' >> /etc/fstab
     echo -e '\n\e[42m[Swap] Done\e[0m\n'
 fi
+cd $HOME
+mkdir Aleo_old_Wallet
+cd Aleo_old_Wallet 
+cat $HOME/aleo/account_new.txt |    tee OLD_account_new.txt
+
+cd $HOME
+
+
 curl -s https://raw.githubusercontent.com/mariofandom/Aleo/main/total_remove_testnet1.sh > total_remove_testnet1.sh && chmod +x total_remove_testnet1.sh && ./total_remove_testnet1.sh
 
 
