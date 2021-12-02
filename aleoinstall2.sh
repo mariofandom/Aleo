@@ -46,7 +46,7 @@ cat $HOME/aleo/account_new.txt |    tee OLD_account_new.txt
 cd $HOME
 
 
-curl -s https://raw.githubusercontent.com/mariofandom/Aleo/main/total_remove_testnet1.sh > total_remove_testnet1.sh && chmod +x total_remove_testnet1.sh && ./total_remove_testnet1.sh
+#curl -s https://raw.githubusercontent.com/mariofandom/Aleo/main/total_remove_testnet1.sh > total_remove_testnet1.sh && chmod +x total_remove_testnet1.sh && ./total_remove_testnet1.sh
 
 
 echo -e 'Installing dependencies...\n' && sleep 1
