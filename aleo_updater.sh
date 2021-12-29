@@ -1,10 +1,9 @@
 #!/bin/bash
 сd $HOME/snarkOS
-while :
-do
-  echo "Checking for updates..."
-  STATUS=$(git pull)
+echo "Checking for updates..."
 
+  rm Cargo.lock
+  STATUS=$(git pull)
   echo $STATUS
   
   if [ "$STATUS" != "Already up to date." ]; then
@@ -34,6 +33,6 @@ do
 	  systemctl restart aleod-miner
 	fi
   fi
-  # $COMMAND & sleep 1800; kill $!
+ 
   sleep 1800
 done
