@@ -1,4 +1,5 @@
 #!/bin/bash
+
 сd $HOME/snarkOS
 echo "Checking for updates..."
 
