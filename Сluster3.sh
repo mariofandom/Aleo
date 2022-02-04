@@ -1,4 +1,5 @@
 #!/bin/bash
+
 systemctl stop aleod
 systemctl stop aleod-miner
 cat /etc/systemd/system/aleod-miner.service
