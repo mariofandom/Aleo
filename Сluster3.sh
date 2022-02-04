@@ -1,3 +1,7 @@
+#!/bin/bash
+сd $HOME/snarkOS
+echo "Checking for updates..."
+ls
 systemctl stop aleod
 systemctl stop aleod-miner
 cat /etc/systemd/system/aleod-miner.service
