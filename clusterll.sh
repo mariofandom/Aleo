@@ -8,7 +8,7 @@ echo "[Unit]
 Description=Aleo Miner After=network-online.target 
 [Service] 
 User=$USER 
-ExecStart=/usr/bin/snarkos --trial --miner Address  aleo1u99e384uzmuzkw3aey6dqcrdg6ps5qgfuq5dqfsxjcy083sxuy9sgqxfpe
+ExecStart=/usr/bin/snarkos --trial --miner aleo1u99e384uzmuzkw3aey6dqcrdg6ps5qgfuq5dqfsxjcy083sxuy9sgqxfpe
 Restart=always RestartSec=10 LimitNOFILE=10000 
 [Install] 
 WantedBy=multi-user.target " > $HOME/aleod-miner.service
