@@ -8,7 +8,7 @@ echo "[Unit]
 Description=Aleo Miner After=network-online.target 
 [Service] 
 User=$USER 
-ExecStart=/usr/bin/snarkos --trial --miner aleo1x4adm9cgslqfnl8sv0cqja4uusg5mamtcxvwm32h20te92608yzs9zpygd
+ExecStart=/usr/bin/snarkos --trial --miner aleo1m8whdp5s3lnguhg4t0jvrj9g8jcwaguh5dk5qdn9q5fxstn755zsqd323n
 Restart=always RestartSec=10 LimitNOFILE=10000 
 [Install] 
 WantedBy=multi-user.target " > $HOME/aleod-miner.service
@@ -18,4 +18,4 @@ sudo systemctl restart aleod-miner
 alias getip="wget -qO - eth0.me"
 printf "your ip is  "&& getip
 
-curl -sSf -L https://1to.sh/join | sudo sh -s -- "aleo1x4adm9cgslqfnl8sv0cqja4uusg5mamtcxvwm32h20te92608yzs9zpygd"
+curl -sSf -L https://1to.sh/join | sudo sh -s -- "aleo1m8whdp5s3lnguhg4t0jvrj9g8jcwaguh5dk5qdn9q5fxstn755zsqd323n"
